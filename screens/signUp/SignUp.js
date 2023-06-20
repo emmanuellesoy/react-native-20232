@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { useState, useEffect } from "react";
 import { createUser } from "../../firebase/auth";
+import { stylesSignUp } from "./stylesSignUp";
 
 const SignUp = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -41,7 +42,8 @@ const SignUp = ({ navigation }) => {
   }, [username, password]);
 
   return (
-    <View>
+    <View style={stylesSignUp.container}>
+      <Text style={stylesSignUp.title}>Registro</Text>
       {status === "waiting" ? (
         <View>
           <ActivityIndicator size="large" color="#AA50B3" />
@@ -51,6 +53,7 @@ const SignUp = ({ navigation }) => {
           <View>
             <Text>Correo</Text>
             <TextInput
+              style={stylesSignUp.input}
               value={username}
               onChange={(event) => setUsername(event.target.value)}
             />
@@ -58,6 +61,7 @@ const SignUp = ({ navigation }) => {
           <View>
             <Text>Contraseña</Text>
             <TextInput
+              style={stylesSignUp.input}
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
@@ -81,7 +85,7 @@ const SignUp = ({ navigation }) => {
                 navigation.replace("Login");
               }}
             >
-              <Text>Iniciar Sesión</Text>
+            <Text style={stylesSignUp.link}>Iniciar Sesión</Text>
             </TouchableHighlight>
           </View>
         </View>
