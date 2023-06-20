@@ -1,10 +1,21 @@
-import { View, Text } from "react-native";
+import { View, Button } from "react-native";
 import { stylesHome } from "./stylesHome";
 
 const Home = () => {
   return (
     <View style={stylesHome.container}>
-      <Text style={stylesHome.title}>Home</Text>
+      <Button
+        title="Personajes"
+      />
+      <Button
+        title="Ibicaciones"
+      />
+      <Button
+        title="Episodios"
+      />
+      <Button
+        title="Cerrar sesión"
+      />
     </View>
   );
 };

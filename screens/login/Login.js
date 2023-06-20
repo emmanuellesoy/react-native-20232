@@ -43,8 +43,10 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={stylesLogin.container}>
-        <Text style={stylesLogin.title}>Inicio de sesión</Text>
-        <View>
+        <View style={stylesLogin.contentTitle}>
+            <Text style={stylesLogin.title}>Inicio de sesión</Text>
+        </View>
+        <View >
             {status === "waiting" && (
                 <ActivityIndicator
                 size="large"

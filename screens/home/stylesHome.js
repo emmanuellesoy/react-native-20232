@@ -8,11 +8,6 @@ const stylesHome = StyleSheet.create({
     padding: 20,
     margin: 10,
   },
-  title: {
-    textAlign: 'center',
-    fontSize: 24,
-    fontWeight: 700,
-  },
 });
 
 export {stylesHome}
