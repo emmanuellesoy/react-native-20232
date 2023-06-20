@@ -1,4 +1,4 @@
-import { Button, View, Text, TextInput, ActivityIndicator } from "react-native";
+import { Button, View, Text, TextInput, ActivityIndicator, StyleSheet } from "react-native";
 import { useState, useEffect } from "react";
 import { signInUser } from "../../firebase/auth";
 
@@ -34,14 +34,42 @@ const Login = () => {
     }, [username, password]);
 
     return (
-        <View>
-            {status === "waiting" && <ActivityIndicator size="large" color="#00ff00" />}
-            <TextInput value={username} onChange={(event) => setUsername(event.target.value)} />
-            <TextInput value={password} onChange={(event) => setPassword(event.target.value)} />
+        <View style={styles.container}>
+            {status === "waiting" && <ActivityIndicator size="large" color="#0000ff" style={styles.indicator}/>}
+            <Text>NAME:</Text>
+            <TextInput style={styles.input} value={username} onChange={(event) => setUsername(event.target.value)} />
+            <Text>PASSWORD:</Text>
+            <TextInput style={styles.input} secureTextEntry={true} value={password} onChange={(event) => setPassword(event.target.value)} />
             {message !== "" && <Text>{message}</Text>}
+            <Text style={styles.link}>Sign up</Text>
             <Button onPress={verifyLogin} title="Iniciar Sesión" disabled={disabled} />
         </View>
     )
 };
+
+const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+        padding: 20,
+        margin: 10,
+    },
+    input: {
+      height: 40,
+      borderWidth: 1,
+      marginTop: 10,
+      marginBottom: 10,
+      padding: 10,
+    },
+    indicator: {
+        marginBottom: 25, 
+    },
+    link: {
+        textAlign: 'center',
+        textDecorationLine: 'underline',
+        marginBottom: 10,
+    }
+});
 
 export default Login;
