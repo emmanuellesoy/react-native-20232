@@ -68,8 +68,10 @@ const signOutUser = async () => {
     });
 };
 
-const state = () => {
-  return {};
+const getUserStateChange = (callback) => {
+  return onAuthStateChanged(auth, (user) => {
+    callback(user);
+  });
 };
 
-export { createUser, signInUser, signOutUser, state };
+export { createUser, signInUser, signOutUser, getUserStateChange };
