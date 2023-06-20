@@ -6,22 +6,22 @@ import {
   ActivityIndicator,
   TouchableHighlight,
 } from "react-native";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
+import { createUser } from "../../firebase/auth";
 
-import { signInUser } from "../../firebase/auth";
 import styles from "./styles";
 
-const Login = ({ navigation }) => {
+const SignUp = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [status, setStatus] = useState("clean");
   const [message, setMessage] = useState("");
 
-  const verifyLogin = () => {
+  const signUp = ({ navigation }) => {
     setDisabled(true);
     setStatus("waiting");
-    signInUser(username, password).then((response) => {
+    createUser(username, password).then((response) => {
       if (response.code === "error") {
         setUsername("");
         setPassword("");
@@ -74,18 +74,18 @@ const Login = ({ navigation }) => {
           )}
           <View style={styles.inputContainer}>
             <Button
-              onPress={verifyLogin}
-              title="Iniciar Sesión"
+              onPress={signUp}
+              title="Crear usuario"
               disabled={disabled}
             />
           </View>
           <View style={styles.inputContainerText}>
             <TouchableHighlight
               onPress={() => {
-                navigation.replace("SignUp");
+                navigation.replace("Login");
               }}
             >
-              <Text>Crear usuario</Text>
+              <Text>Iniciar Sesión</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -94,4 +94,4 @@ const Login = ({ navigation }) => {
   );
 };
 
-export default Login;
+export default SignUp;
