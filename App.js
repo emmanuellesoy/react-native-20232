@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
 import { getUserStateChange } from "./firebase/auth";
 
-import { Login, SignUp, Home } from "./screens";
+import { Login, SignUp, Home, List, Detail } from "./screens";
 import UserContext from "./context/user";
 
 export default function App() {
@@ -21,7 +21,17 @@ export default function App() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="List">
+        <Stack.Screen
+                name="Detail"
+                component={Detail}
+                options={{ headerShown: false }}
+              />
+            <Stack.Screen
+                name="List"
+                component={List}
+                options={{ headerShown: false }}
+              />
           {user ? (
             <>
               <Stack.Screen
@@ -42,6 +52,7 @@ export default function App() {
                 component={SignUp}
                 options={{ headerShown: false }}
               />
+              
             </>
           )}
         </Stack.Navigator>

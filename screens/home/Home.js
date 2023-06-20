@@ -4,15 +4,26 @@ import { stylesHome } from "./stylesHome";
 const Home = () => {
   return (
     <View style={stylesHome.container}>
-      <Button
-        title="Personajes"
-      />
-      <Button
-        title="Ibicaciones"
-      />
-      <Button
-        title="Episodios"
-      />
+      <View style={stylesHome.button}>
+        <Button
+          title="Personajes"
+        />
+      </View>
+      <View style={stylesHome.button}>
+        <Button
+          title="Ubicaciones"
+        />
+      </View>
+      <View style={stylesHome.button}>
+        <Button
+          title="Episodios"
+        />
+      </View>
+      <View style={stylesHome.button}>
+        <Button
+          title="Personajes"
+        />
+      </View>
       <Button
         title="Cerrar sesión"
       />
