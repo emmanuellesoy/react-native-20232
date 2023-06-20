@@ -1,11 +1,4 @@
-import {
-  Button,
-  View,
-  Text,
-  TextInput,
-  ActivityIndicator,
-  StyleSheet,
-} from "react-native";
+import { Button, View, Text, TextInput, ActivityIndicator } from "react-native";
 import { useState, useEffect } from "react";
 import { stylesLogin } from "./stylesLogin";
 import { signInUser } from "../../firebase/auth";

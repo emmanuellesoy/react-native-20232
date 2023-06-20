@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useState, useEffect } from "react";
 import { createUser } from "../../firebase/auth";
-import { stylesSignUp } from "./stylesSignUp";
+import { stylesSignUp } from "./styles";
 
 const SignUp = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -85,7 +85,7 @@ const SignUp = ({ navigation }) => {
                 navigation.replace("Login");
               }}
             >
-            <Text style={stylesSignUp.link}>Iniciar Sesión</Text>
+              <Text style={stylesSignUp.link}>Iniciar Sesión</Text>
             </TouchableHighlight>
           </View>
         </View>
