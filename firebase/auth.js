@@ -5,12 +5,17 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
-import { useContext } from "react";
 
 import app from "./config";
-import UserContext from "../context/user";
 
 const auth = getAuth(app);
+
+const getMessage = (message) => {
+  let cleanMessage = message.replace("auth/", "");
+  cleanMessage = cleanMessage.replace("-", " ");
+  cleanMessage = cleanMessage.toUpperCase();
+  return cleanMessage;
+};
 
 const createUser = async (email, password) => {
   return await createUserWithEmailAndPassword(auth, email, password)
@@ -18,12 +23,13 @@ const createUser = async (email, password) => {
       return {
         code: "success",
         message: "User created successfully",
+        ...userCredetial,
       };
     })
     .catch((error) => {
       return {
         code: "error",
-        message: error.code,
+        message: getMessage(error.code),
       };
     });
 };
@@ -34,12 +40,13 @@ const signInUser = async (email, password) => {
       return {
         code: "success",
         message: "User logged in successfully",
+        ...userCredential,
       };
     })
     .catch((error) => {
       return {
         code: "error",
-        message: error.code,
+        message: getMessage(error.code),
       };
     });
 };
@@ -61,4 +68,8 @@ const signOutUser = async () => {
     });
 };
 
-export { createUser, signInUser, signOutUser, onAuthStateChanged };
+const state = () => {
+  return {};
+};
+
+export { createUser, signInUser, signOutUser, state };

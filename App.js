@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useContext, useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { state } from "./firebase/auth";
 
 import { Login, SignUp, Home } from "./screens";
 import UserContext from "./context/user";
@@ -12,7 +12,7 @@ export default function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    onAuthStateChanged();
+    state();
   }, []);
 
   return (

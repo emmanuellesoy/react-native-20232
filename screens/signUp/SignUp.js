@@ -9,8 +9,6 @@ import {
 import { useState, useEffect } from "react";
 import { createUser } from "../../firebase/auth";
 
-import styles from "./styles";
-
 const SignUp = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -43,43 +41,41 @@ const SignUp = ({ navigation }) => {
   }, [username, password]);
 
   return (
-    <View style={styles.container}>
+    <View>
       {status === "waiting" ? (
-        <View style={styles.activityIndicator}>
+        <View>
           <ActivityIndicator size="large" color="#AA50B3" />
         </View>
       ) : (
-        <View style={styles.formContainer}>
-          <View style={styles.inputContainer}>
+        <View>
+          <View>
             <Text>Correo</Text>
             <TextInput
-              style={styles.inputText}
               value={username}
               onChange={(event) => setUsername(event.target.value)}
             />
           </View>
-          <View style={styles.inputContainer}>
+          <View>
             <Text>Contraseña</Text>
             <TextInput
-              style={styles.inputText}
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
           </View>
 
           {message !== "" && (
-            <View style={styles.inputContainer}>
+            <View>
               <Text>{message}</Text>
             </View>
           )}
-          <View style={styles.inputContainer}>
+          <View>
             <Button
               onPress={signUp}
               title="Crear usuario"
               disabled={disabled}
             />
           </View>
-          <View style={styles.inputContainerText}>
+          <View>
             <TouchableHighlight
               onPress={() => {
                 navigation.replace("Login");

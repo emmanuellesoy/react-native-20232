@@ -4,12 +4,11 @@ import {
   Text,
   TextInput,
   ActivityIndicator,
-  TouchableHighlight,
+  StyleSheet,
 } from "react-native";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 
 import { signInUser } from "../../firebase/auth";
-import styles from "./styles";
 
 const Login = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -44,54 +43,60 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {status === "waiting" ? (
-        <View style={styles.activityIndicator}>
-          <ActivityIndicator size="large" color="#AA50B3" />
-        </View>
-      ) : (
-        <View style={styles.formContainer}>
-          <View style={styles.inputContainer}>
-            <Text>Correo</Text>
-            <TextInput
-              style={styles.inputText}
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-            />
-          </View>
-          <View style={styles.inputContainer}>
-            <Text>Contraseña</Text>
-            <TextInput
-              style={styles.inputText}
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </View>
-
-          {message !== "" && (
-            <View style={styles.inputContainer}>
-              <Text>{message}</Text>
-            </View>
-          )}
-          <View style={styles.inputContainer}>
-            <Button
-              onPress={verifyLogin}
-              title="Iniciar Sesión"
-              disabled={disabled}
-            />
-          </View>
-          <View style={styles.inputContainerText}>
-            <TouchableHighlight
-              onPress={() => {
-                navigation.replace("SignUp");
-              }}
-            >
-              <Text>Crear usuario</Text>
-            </TouchableHighlight>
-          </View>
-        </View>
+      {status === "waiting" && (
+        <ActivityIndicator
+          size="large"
+          color="#0000ff"
+          style={styles.indicator}
+        />
       )}
+      <Text>NAME:</Text>
+      <TextInput
+        style={styles.input}
+        value={username}
+        onChange={(event) => setUsername(event.target.value)}
+      />
+      <Text>PASSWORD:</Text>
+      <TextInput
+        style={styles.input}
+        secureTextEntry={true}
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+      />
+      {message !== "" && <Text>{message}</Text>}
+      <Text style={styles.link}>Sign up</Text>
+      <Button
+        onPress={verifyLogin}
+        title="Iniciar Sesión"
+        disabled={disabled}
+      />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    padding: 20,
+    margin: 10,
+  },
+  input: {
+    height: 40,
+    borderWidth: 1,
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 10,
+  },
+  indicator: {
+    marginBottom: 25,
+  },
+  link: {
+    textAlign: "center",
+    textDecorationLine: "underline",
+    marginBottom: 10,
+  },
+});
 
 export default Login;
