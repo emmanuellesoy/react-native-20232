@@ -1,13 +1,6 @@
-import {
-  Button,
-  View,
-  Text,
-  TextInput,
-  ActivityIndicator,
-  StyleSheet,
-} from "react-native";
+import { Button, View, Text, TextInput, ActivityIndicator } from "react-native";
 import { useState, useEffect } from "react";
-import { stylesLogin } from "./stylesLogin";
+import { stylesLogin } from "./styles";
 import { signInUser } from "../../firebase/auth";
 
 const Login = ({ navigation }) => {
@@ -43,36 +36,36 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={stylesLogin.container}>
-        <Text style={stylesLogin.title}>Inicio de sesión</Text>
-        <View>
-            {status === "waiting" && (
-                <ActivityIndicator
-                size="large"
-                color="#0000ff"
-                style={styles.indicator}
-                />
-            )}
-            <Text>NAME:</Text>
-            <TextInput
-                style={stylesLogin.input}
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
-            />
-            <Text>PASSWORD:</Text>
-            <TextInput
-                style={stylesLogin.input}
-                secureTextEntry={true}
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-            />
-            {message !== "" && <Text>{message}</Text>}
-            <Text style={stylesLogin.link}>Sign up</Text>
-            <Button
-                onPress={verifyLogin}
-                title="Iniciar Sesión"
-                disabled={disabled}
-            />
-        </View>
+      <Text style={stylesLogin.title}>Inicio de sesión</Text>
+      <View>
+        {status === "waiting" && (
+          <ActivityIndicator
+            size="large"
+            color="#0000ff"
+            style={styles.indicator}
+          />
+        )}
+        <Text>NAME:</Text>
+        <TextInput
+          style={stylesLogin.input}
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+        <Text>PASSWORD:</Text>
+        <TextInput
+          style={stylesLogin.input}
+          secureTextEntry={true}
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+        {message !== "" && <Text>{message}</Text>}
+        <Button
+          onPress={verifyLogin}
+          title="Iniciar Sesión"
+          disabled={disabled}
+        />
+        <Text style={stylesLogin.link}>Sign up</Text>
+      </View>
     </View>
   );
 };
